@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libs.Email;
+using LojaVirtual.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,11 +25,21 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            string nome = HttpContext.Request.Form["nome"];
-            string email = HttpContext.Request.Form["email"];
-            string texto = HttpContext.Request.Form["texto"];
+            try
+            {
+                Contato contato = new Contato(HttpContext.Request.Form["nome"], HttpContext.Request.Form["email"], HttpContext.Request.Form["texto"]);
 
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso!<br/> Nome: {0} <br/>E-mail: {1} <br/>Texto: {2}", nome, email, texto), ContentType = "text/html" };
+                ContatoEmail.EnviarContatoPorEmail(contato);
+                ViewData["MSG_SUCESSO"] = "Mensagem de contato enviada com sucesso!";
+            }
+            catch (Exception e)
+            {
+                ViewData["MSG_ERRO"] = "Ops! Aconteceu algo inesperado, tente novamente em alguns instantes!";
+                
+                //TODO - Implementar Log
+            }
+
+            return View("Contato");
         }
 
         public IActionResult Login()
