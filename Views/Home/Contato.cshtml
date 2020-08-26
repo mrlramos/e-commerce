@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Contato";
+    LojaVirtual.Models.Contato contato = (LojaVirtual.Models.Contato) ViewData["Contato"]; // Para manter dados do contato no formulario caso dê erro.
 }
 
 <main role="main">
@@ -43,7 +44,7 @@
                             }
                             @if (ViewData["MSG_ERRO"] != null)
                             {
-                                <p class="alert alert-danger" >@ViewData["MSG_ERRO"]</p>
+                                <p class="alert alert-danger" >@Html.Raw(ViewData["MSG_ERRO"])</p>
                             }
                             <form role="form" method="post" action="/Home/ContatoAcao">
                                 <div class="form-group">
@@ -53,7 +54,7 @@
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
                                         <input type="text" id="nome" class="form-control" name="nome" placeholder=""
-                                               required="">
+                                               required="" value="@(contato != null ? contato.Nome : string.Empty)">
                                     </div> <!-- input-group.// -->
                                 </div> <!-- form-group.// -->
 
@@ -63,7 +64,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-at"></i></span>
                                         </div>
-                                        <input type="text" id="email" class="form-control" name="email" placeholder="">
+                                        <input type="text" id="email" class="form-control" name="email" placeholder="" value="@(contato != null ? contato.Email : string.Empty)">
                                     </div> <!-- input-group.// -->
                                 </div> <!-- form-group.// -->
 
@@ -76,7 +77,7 @@
                                                 </span>
                                             </label>
                                             <div class="form-inline">
-                                                <textarea class="form-control" name="texto" id="texto" style="width:100%" placeholder=""></textarea>
+                                                <textarea class="form-control" name="texto" id="texto" style="width:100%" placeholder="">@(contato != null ? contato.Texto : string.Empty)</textarea>
 
                                             </div>
                                         </div>
