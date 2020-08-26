@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 namespace LojaVirtual.Models
 {
     public class Cliente
-    {        
-        public int Id { get; set; } // PK
+    {
+        // PK
+        public int Id { get; set; }
 
         public string Nome { get; set; }
 
@@ -17,7 +18,7 @@ namespace LojaVirtual.Models
 
         public string Cpf { get; set; }
 
-        public string Telefone { get; set; }
+        public double Telefone { get; set; }
 
         public string Email { get; set; }
 

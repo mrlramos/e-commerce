@@ -36,7 +36,7 @@ namespace LojaVirtual.Libs.Email
             mensagem.Body = corpoEmail;
             mensagem.IsBodyHtml = true;
 
-            smtp.Send(mensagem);
+            //smtp.Send(mensagem);
         }
     }
 }

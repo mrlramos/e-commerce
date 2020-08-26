@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20200826063127_BancoInicial")]
+    [Migration("20200826194525_BancoInicial")]
     partial class BancoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,8 +46,8 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("Sexo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Telefone")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

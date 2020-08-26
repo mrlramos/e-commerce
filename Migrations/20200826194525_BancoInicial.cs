@@ -17,7 +17,7 @@ namespace LojaVirtual.Migrations
                     Nascimento = table.Column<DateTime>(nullable: false),
                     Sexo = table.Column<string>(nullable: true),
                     Cpf = table.Column<string>(nullable: true),
-                    Telefone = table.Column<string>(nullable: true),
+                    Telefone = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Senha = table.Column<string>(nullable: true)
                 },
